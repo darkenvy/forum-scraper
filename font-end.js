@@ -12,7 +12,7 @@ console.log(getThreads());
 if ($('a.group-thread__link').length > 0) {
   GM_xmlhttpRequest({
     method: "POST",
-    url: "http://127.0.0.1:3000",
+    url: "http://127.0.0.1:3000/top",
     data: JSON.stringify(getThreads()),
     // data: getThreads(),
     // headers: {"Content-Type": "application/x-www-form-urlencoded"},
