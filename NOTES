@@ -1,0 +1,45 @@
+app.post('/top', function(req, res) {
+
+  // Prepare the object to pass into the DB.
+  var findOrCreateObj = {
+    where: {threadId: req.query.id},
+    defaults: {threads: req.query.threads, posts: req.query.posts, latest: convertTime(req.query.latest) } 
+  }
+
+  // This is the bulk of the work.
+  // If the forum model is older than new information, update model, alert users
+  var spread = function(user, created) {
+    if (!created && user.latest < convertTime(req.query.latest)) {
+      user.threads = req.query.threads;
+      user.posts = req.query.posts;
+      user.latest = convertTime(req.query.latest);
+      user.save();
+    }
+  }
+
+  // The actual DB commands. Cleaned up for easy readability.
+  db.topLevel
+    .findOrCreate(findOrCreateObj)
+    .spread(function(user, created) {spread(user, created);})
+    .error(function(err) {console.log('An error occurred in FindOrCreate : ', error); })
+    .then(function() {res.send('success'); });
+
+});
+
+
+
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
+
+
+// $.ajax({
+//   type: "POST",
+//   url: "localhost:3000",
+//   data: getThreads,
+//   // success: success
+//   // dataType: "json"
+// }).done(function(res) {
+//   console.log(res);
+// });
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
