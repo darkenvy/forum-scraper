@@ -1,3 +1,7 @@
+// var phantom = require('phantom');
+// var casper = require('casperjs')
+
+
 // First two lines are needed. see this:http://stackoverflow.com/questions/25761028/cannot-find-module-casper-when-invoking-through-phantomjs
 phantom.casperPath = 'node_modules/casperjs';
 phantom.injectJs('node_modules/casperjs/bin/bootstrap.js');
