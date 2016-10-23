@@ -1,17 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-// var helper = require('./modules/rs-helpers');
 var main = require('./modules/rs-main');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-
-
-
-
-
 
 // ––––––––––––––––––––––––– Routes –––––––––––––––––––––––– //
 
@@ -24,8 +17,6 @@ app.post('/top', function(req, res) {
 app.post('/sub', function(req, res) {
   main.checkData('sub', req.body);
 });
-
-
 
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
 
