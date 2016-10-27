@@ -43,3 +43,25 @@ app.post('/top', function(req, res) {
 // });
 
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
+
+// exports.convertTime = function(timeString) {
+//   var formatSplit = timeString.split(' ')
+//   var dateParts = formatSplit[0].split('/');
+//   var newDate = dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2] + " " + formatSplit[1];
+//   return parseInt(new Date(newDate).valueOf()/1000);
+// }
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
+
+
+europe - 8 hours
+PST + 8 hours
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––– //
+
+  // db.subLevel.findAll(old)
+  //   .then(function(results) {
+  //     for (var i=0; i<results.length; i++) {
+  //       console.log('7777777', results[i].threadName);
+  //     }
+  //   })

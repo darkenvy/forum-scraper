@@ -32,38 +32,36 @@ var getSubThreads = function() {
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––– //
 
 
-function sendPOST(dataJSON) {
+function sendPOST(dataJSON, path) {
   GM_xmlhttpRequest({
     method: "POST",
-    url: "http://127.0.0.1:3000/top",
+    url: "http://127.0.0.1:3000/" + path,
     data: dataJSON,
     headers: {"Content-Type": "application/json; charset=utf-8"},
     dataType: "json",
     onload: function(response) {
       console.log(response);
       aux();
+      console.log('ran aux');
     }
   });
+
+  if (path == 'sub') { setTimeout(function() {aux();}, 2000); } // idk why when path=sub, onload wont run.
 }
 
 $(document).ready(function() {
   if ($('a.group-thread__link').length > 0) {
     console.log('top level forum');
     var data = JSON.stringify( getTopThreads() );
-    sendPOST(data);
+    sendPOST(data, 'top');
   } 
   else if ($('a.thread-plate__main-link').length > 0) {
     console.log('sub level forum');
     var data = JSON.stringify( getSubThreads() );
-    sendPOST(data);
+    sendPOST(data, 'sub');
   }
   else {
     console.log('nothing found :(');
     aux();
   }
 });
-
-
-// cleaned[key] = allThreads[i].children[4].innerText;
-// data: getThreads(),
-// headers: {"Content-Type": "application/x-www-form-urlencoded"},

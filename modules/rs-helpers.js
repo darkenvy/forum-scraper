@@ -1,11 +1,11 @@
 var exports = module.exports = {};
 
-// exports.convertTime = function(timeString) {
-//   var formatSplit = timeString.split(' ')
-//   var dateParts = formatSplit[0].split('/');
-//   var newDate = dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2] + " " + formatSplit[1];
-//   return parseInt(new Date(newDate).valueOf()/1000);
-// }
+exports.currentTime = function() {
+  // adjust current time to equal GMT time. 
+  // To do this we need to see our offset and adjust it that way
+  var msOffset = (60 + new Date().getTimezoneOffset()) * 60; // Do I always need the 60+? This could be a summer offset. DST.
+  return msOffset + parseInt(new Date().valueOf()/1000);
+}
 
 exports.convertTime = function(time) { 
   var replacer = function(match, p1, p2, p3, p4, p5) {
@@ -21,3 +21,7 @@ exports.convertTime = function(time) {
   } 
   else {return 0;}
 }
+
+
+
+

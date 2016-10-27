@@ -9,13 +9,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 // ––––––––––––––––––––––––– Routes –––––––––––––––––––––––– //
 
 app.post('/top', function(req, res) {
-  console.log('body ',req.body);
-  main.checkData('top', req.body);
   console.log('received top POST at', new Date());
+  main.checkData('top', req.body);
   res.send('Done');
 });
 
 app.post('/sub', function(req, res) {
+  console.log('received sub POST at', new Date());
   main.checkData('sub', req.body);
 });
 
